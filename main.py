@@ -65,6 +65,12 @@ while not isGameFinished:
     if movePlayer[DOWN]:
         playerY += playerSpeed
 
+    # Player boundary collision
+    if playerY < 10:
+        playerY = 10
+    if playerY > (screenHeight - padHeight - 10):
+        playerY = (screenHeight - padHeight - 10)
+
 
     screen.fill(BLACK)
 
