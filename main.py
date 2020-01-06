@@ -1,8 +1,8 @@
-# Importeer de Pygame library
+# Import Pygame library
 import pygame
 
 
-# Globale variabelen/constanten
+# Globals
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -25,15 +25,15 @@ computerX, computerY = screenWidth-50, screenHeight/2
 computerSpeed = 4
 
 
-# Pygame initialiseren
+# Initialize Pygame
 pygame.init()
 
 
-# Display aanmaken
+# Create display
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 
 
-#Klok aanmaken
+# Create clock
 clock = pygame.time.Clock()
 
 
@@ -60,11 +60,16 @@ while not isGameFinished:
 
 
     screen.fill(BLACK)
+
+    # Draw player
     pygame.draw.rect(screen, WHITE, pygame.Rect(playerX, playerY, 20, 100))
+
+    # Draw computer
     pygame.draw.rect(screen, WHITE, pygame.Rect(computerX, computerY, 20, 100))
+
     pygame.display.flip()
     clock.tick(FPS)
 
 
-# Pygame afsluiten
+# Close Pygame
 pygame.quit()
