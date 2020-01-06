@@ -12,7 +12,7 @@ BLUE = (0, 0, 255)
 UP = 0
 DOWN = 1
 
-FPS = 60
+FPS = 75 # Change this to your display refresh rate for best result
 isGameFinished = False
 screenWidth = 1000
 screenHeight = 600
@@ -23,6 +23,12 @@ movePlayer = [False, False]
 
 computerX, computerY = screenWidth-50, screenHeight/2
 computerSpeed = 4
+
+ballX, ballY = screenWidth/2, screenHeight/2
+ballRadius = 8
+ballSpeed = 7
+
+padHeight, padWidth = 100, 20
 
 
 # Initialize Pygame
@@ -53,6 +59,7 @@ while not isGameFinished:
             if event.key == pygame.K_s:
                 movePlayer[DOWN] = False
 
+    # Player movement
     if movePlayer[UP]:
         playerY -= playerSpeed
     if movePlayer[DOWN]:
@@ -62,10 +69,13 @@ while not isGameFinished:
     screen.fill(BLACK)
 
     # Draw player
-    pygame.draw.rect(screen, WHITE, pygame.Rect(playerX, playerY, 20, 100))
+    pygame.draw.rect(screen, WHITE, pygame.Rect(playerX, playerY, padWidth, padHeight))
 
     # Draw computer
-    pygame.draw.rect(screen, WHITE, pygame.Rect(computerX, computerY, 20, 100))
+    pygame.draw.rect(screen, WHITE, pygame.Rect(computerX, computerY, padWidth, padHeight))
+
+    # Draw ball
+    pygame.draw.circle(screen, WHITE, (int(ballX), int(ballY)), ballRadius)
 
     pygame.display.flip()
     clock.tick(FPS)
