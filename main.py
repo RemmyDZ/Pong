@@ -5,7 +5,7 @@ import random
 
 # Import local libraries
 import colors as col
-import directions as dir
+import directions as dirs # "dir" is already something in Python
 
 
 # Globals
@@ -60,71 +60,71 @@ while not isGameFinished:
             isGameFinished = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                player.move[dir.UP] = True
+                player.move[dirs.UP] = True
             if event.key == pygame.K_s:
-                player.move[dir.DOWN] = True
+                player.move[dirs.DOWN] = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                player.move[dir.UP] = False
+                player.move[dirs.UP] = False
             if event.key == pygame.K_s:
-                player.move[dir.DOWN] = False
+                player.move[dirs.DOWN] = False
 
     # Player movement
-    if player.move[dir.UP]:
+    if player.move[dirs.UP]:
         player.y -= player.speed
-    if player.move[dir.DOWN]:
+    if player.move[dirs.DOWN]:
         player.y += player.speed
 
     # Set ball direction based on the direction number
-    if ballDirectionNumber == 0: #dir.UP
-        ballDirection[dir.UP] = True
-        ballDirection[dir.DOWN] = False
-        ballDirection[dir.LEFT] = False
-        ballDirection[dir.RIGHT] = False
-    elif ballDirectionNumber == 1: # dir.DOWN
-        ballDirection[dir.DOWN] = True
-        ballDirection[dir.UP] = False
-        ballDirection[dir.LEFT] = False
-        ballDirection[dir.RIGHT] = False
-    elif ballDirectionNumber == 2: # dir.LEFT
-        ballDirection[dir.LEFT] = True
-        ballDirection[dir.RIGHT] = False
-        ballDirection[dir.UP] = False
-        ballDirection[dir.DOWN] = False
-    elif ballDirectionNumber == 3: # dir.RIGHT
-        ballDirection[dir.RIGHT] = True
-        ballDirection[dir.LEFT] = False
-        ballDirection[dir.UP] = False
-        ballDirection[dir.DOWN] = False
-    elif ballDirectionNumber == 4: # dir.UP + dir.LEFT
-        ballDirection[dir.UP] = True
-        ballDirection[dir.LEFT] = True
-        ballDirection[dir.DOWN] = False
-        ballDirection[dir.RIGHT] = False
-    elif ballDirectionNumber == 5: # dir.UP + dir.RIGHT
-        ballDirection[dir.UP] = True
-        ballDirection[dir.RIGHT] = True
-        ballDirection[dir.LEFT] = False
-        ballDirection[dir.DOWN] = False
-    elif ballDirectionNumber == 6: # dir.DOWN + dir.LEFT
-        ballDirection[dir.DOWN] = True
-        ballDirection[dir.LEFT] = True
-        ballDirection[dir.UP] = False
-        ballDirection[dir.RIGHT] = False
-    elif ballDirectionNumber == 7: # dir.DOWN + dir.RIGHT
-        ballDirection[dir.DOWN] = True
-        ballDirection[dir.RIGHT] = False
-        ballDirection[dir.UP] = False
-        ballDirection[dir.LEFT] = False
+    if ballDirectionNumber == 0: # Up
+        ballDirection[dirs.UP] = True
+        ballDirection[dirs.DOWN] = False
+        ballDirection[dirs.LEFT] = False
+        ballDirection[dirs.RIGHT] = False
+    elif ballDirectionNumber == 1: # Down
+        ballDirection[dirs.DOWN] = True
+        ballDirection[dirs.UP] = False
+        ballDirection[dirs.LEFT] = False
+        ballDirection[dirs.RIGHT] = False
+    elif ballDirectionNumber == 2: # Left
+        ballDirection[dirs.LEFT] = True
+        ballDirection[dirs.RIGHT] = False
+        ballDirection[dirs.UP] = False
+        ballDirection[dirs.DOWN] = False
+    elif ballDirectionNumber == 3: # Right
+        ballDirection[dirs.RIGHT] = True
+        ballDirection[dirs.LEFT] = False
+        ballDirection[dirs.UP] = False
+        ballDirection[dirs.DOWN] = False
+    elif ballDirectionNumber == 4: # Up + left
+        ballDirection[dirs.UP] = True
+        ballDirection[dirs.LEFT] = True
+        ballDirection[dirs.DOWN] = False
+        ballDirection[dirs.RIGHT] = False
+    elif ballDirectionNumber == 5: # Up + right
+        ballDirection[dirs.UP] = True
+        ballDirection[dirs.RIGHT] = True
+        ballDirection[dirs.LEFT] = False
+        ballDirection[dirs.DOWN] = False
+    elif ballDirectionNumber == 6: # Down + left
+        ballDirection[dirs.DOWN] = True
+        ballDirection[dirs.LEFT] = True
+        ballDirection[dirs.UP] = False
+        ballDirection[dirs.RIGHT] = False
+    elif ballDirectionNumber == 7: # Down + right
+        ballDirection[dirs.DOWN] = True
+        ballDirection[dirs.RIGHT] = False
+        ballDirection[dirs.UP] = False
+        ballDirection[dirs.LEFT] = False
 
     # Ball movement
-    if ballDirection[dir.UP]:
+    if ballDirection[dirs.UP]:
         ballY -= ballSpeed
-    if ballDirection[dir.DOWN]:
+    if ballDirection[dirs.DOWN]:
         ballY += ballSpeed
-    if ballDirection[dir.LEFT]:
+    if ballDirection[dirs.LEFT]:
         ballX -= ballSpeed
-    if ballDirection[dir.RIGHT]:
+    if ballDirection[dirs.RIGHT]:
         ballX += ballSpeed
 
     # Player boundary collision
