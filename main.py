@@ -20,10 +20,6 @@ isGameFinished = False
 screenWidth = 1000
 screenHeight = 600
 
-playerX, playerY = 30, screenHeight/2
-playerSpeed = 5
-movePlayer = [False, False]
-
 computerX, computerY = screenWidth-50, screenHeight/2
 computerSpeed = 4
 
@@ -36,6 +32,17 @@ ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 up to 
 padHeight, padWidth = 100, 20
 
 
+# Classes
+class Player:
+    def __init__(self, x, y, height, width, speed):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.speed = speed
+        self.move = [False, False] # When created the player should not move without any input first
+
+
 # Initialize Pygame
 pygame.init()
 
@@ -43,6 +50,9 @@ pygame.init()
 # Create display
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 
+
+# Create objects
+player = Player(30, screenHeight/2, 100, 20, 5)
 
 # Create clock
 clock = pygame.time.Clock()
@@ -55,20 +65,20 @@ while not isGameFinished:
             isGameFinished = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                movePlayer[UP] = True
+                player.move[UP] = True
             if event.key == pygame.K_s:
-                movePlayer[DOWN] = True
+                player.move[DOWN] = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                movePlayer[UP] = False
+                player.move[UP] = False
             if event.key == pygame.K_s:
-                movePlayer[DOWN] = False
+                player.move[DOWN] = False
 
     # Player movement
-    if movePlayer[UP]:
-        playerY -= playerSpeed
-    if movePlayer[DOWN]:
-        playerY += playerSpeed
+    if player.move[UP]:
+        player.y -= player.speed
+    if player.move[DOWN]:
+        player.y += player.speed
 
     # Set ball direction based on the direction number
     if ballDirectionNumber == 0: #UP
@@ -123,16 +133,16 @@ while not isGameFinished:
         ballX += ballSpeed
 
     # Player boundary collision
-    if playerY < 10:
-        playerY = 10
-    if playerY > (screenHeight - padHeight - 10):
-        playerY = (screenHeight - padHeight - 10)
+    if player.y < 10:
+        player.y = 10
+    if player.y > (screenHeight - player.height - 10):
+        player.y = (screenHeight - player.height - 10)
 
 
     screen.fill(BLACK)
 
     # Draw player
-    pygame.draw.rect(screen, WHITE, pygame.Rect(playerX, playerY, padWidth, padHeight))
+    pygame.draw.rect(screen, WHITE, pygame.Rect(player.x, player.y, player.width, player.height))
 
     # Draw computer
     pygame.draw.rect(screen, WHITE, pygame.Rect(computerX, computerY, padWidth, padHeight))
