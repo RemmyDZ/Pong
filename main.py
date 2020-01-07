@@ -1,5 +1,6 @@
-# Import Pygame library
+# Import libraries
 import pygame
+import random
 
 
 # Globals
@@ -11,6 +12,8 @@ BLUE = (0, 0, 255)
 
 UP = 0
 DOWN = 1
+LEFT = 2
+RIGHT = 3
 
 FPS = 75 # Change this to your display refresh rate for best result
 isGameFinished = False
@@ -27,6 +30,8 @@ computerSpeed = 4
 ballX, ballY = screenWidth/2, screenHeight/2
 ballRadius = 8
 ballSpeed = 7
+ballDirection = [False, False, False, False] # The ball has 8 directions, UP, DOWN, LEFT, RIGHT and combinations such as UP+LEFT or DOWN+RIGHT
+ballDirectionNumber = 0
 
 padHeight, padWidth = 100, 20
 
@@ -64,6 +69,59 @@ while not isGameFinished:
         playerY -= playerSpeed
     if movePlayer[DOWN]:
         playerY += playerSpeed
+
+    # Give ball random direction
+    ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 up to 7 makes 8 possible numbers
+    if ballDirectionNumber == 0: #UP
+        ballDirection[UP] = True
+        ballDirection[DOWN] = False
+        ballDirection[LEFT] = False
+        ballDirection[RIGHT] = False
+    elif ballDirectionNumber == 1: # DOWN
+        ballDirection[DOWN] = True
+        ballDirection[UP] = False
+        ballDirection[LEFT] = False
+        ballDirection[RIGHT] = False
+    elif ballDirectionNumber == 2: # LEFT
+        ballDirection[LEFT] = True
+        ballDirection[RIGHT] = False
+        ballDirection[UP] = False
+        ballDirection[DOWN] = False
+    elif ballDirectionNumber == 3: # RIGHT
+        ballDirection[RIGHT] = True
+        ballDirection[LEFT] = False
+        ballDirection[UP] = False
+        ballDirection[DOWN] = False
+    elif ballDirectionNumber == 4: # UP + LEFT
+        ballDirection[UP] = True
+        ballDirection[LEFT] = True
+        ballDirection[DOWN] = False
+        ballDirection[RIGHT] = False
+    elif ballDirectionNumber == 5: # UP + RIGHT
+        ballDirection[UP] = True
+        ballDirection[RIGHT] = True
+        ballDirection[LEFT] = False
+        ballDirection[DOWN] = False
+    elif ballDirectionNumber == 6: # DOWN + LEFT
+        ballDirection[DOWN] = True
+        ballDirection[LEFT] = True
+        ballDirection[UP] = False
+        ballDirection[RIGHT] = False
+    elif ballDirectionNumber == 7: # DOWN + RIGHT
+        ballDirection[DOWN] = True
+        ballDirection[RIGHT] = False
+        ballDirection[UP] = False
+        ballDirection[LEFT] = False
+
+    # Ball movement
+    if ballDirection[UP]:
+        ballY -= ballSpeed
+    if ballDirection[DOWN]:
+        ballY += ballSpeed
+    if ballDirection[LEFT]:
+        ballX -= ballSpeed
+    if ballDirection[RIGHT]:
+        ballX += ballSpeed
 
     # Player boundary collision
     if playerY < 10:
