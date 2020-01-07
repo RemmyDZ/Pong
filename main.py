@@ -31,7 +31,7 @@ ballX, ballY = screenWidth/2, screenHeight/2
 ballRadius = 8
 ballSpeed = 7
 ballDirection = [False, False, False, False] # The ball has 8 directions, UP, DOWN, LEFT, RIGHT and combinations such as UP+LEFT or DOWN+RIGHT
-ballDirectionNumber = 0
+ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 up to 7 makes 8 possible numbers
 
 padHeight, padWidth = 100, 20
 
@@ -70,8 +70,7 @@ while not isGameFinished:
     if movePlayer[DOWN]:
         playerY += playerSpeed
 
-    # Give ball random direction
-    ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 up to 7 makes 8 possible numbers
+    # Set ball direction based on the direction number
     if ballDirectionNumber == 0: #UP
         ballDirection[UP] = True
         ballDirection[DOWN] = False
