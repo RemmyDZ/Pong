@@ -7,6 +7,7 @@ import random
 import globals as glob
 import colors as col
 import directions as dirs # "dir" is already something in Python
+import classes
 
 
 # Globals
@@ -19,32 +20,6 @@ ballDirection = [False, False, False, False]
 ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 dir.UP to 7 makes 8 possible numbers
 
 
-# Classes
-class Player:
-    def __init__(self, x, y, height, width, speed):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
-        self.speed = speed
-        self.move = [False, False] # When created the player should not move without any input first
-
-class Computer:
-    def __init__ (self, x, y, height, width, speed):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
-        self.speed = speed
-
-class Ball:
-    def __init__(self, x, y, radius, speed):
-        self.x = x
-        self.y = y
-        self.radius = radius
-        self.speed = speed
-        self.direction = [False, False, False, False] # The ball has 8 directions, up, down, left, right and combinations of those that wouldn't cancel each other out
-
 # Initialize Pygame
 pygame.init()
 
@@ -54,9 +29,9 @@ screen = pygame.display.set_mode((glob.SCREEN_WIDTH, glob.SCREEN_HEIGHT))
 
 
 # Create objects
-player = Player(30, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 5)
-computer = Computer(glob.SCREEN_WIDTH-50, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 4)
-ball = Ball(glob.SCREEN_WIDTH/2, glob.SCREEN_HEIGHT/2, 8, 7)
+player = classes.Player(30, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 5)
+computer = classes.Computer(glob.SCREEN_WIDTH-50, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 4)
+ball = classes.Ball(glob.SCREEN_WIDTH/2, glob.SCREEN_HEIGHT/2, 8, 7)
 
 # Create clock
 clock = pygame.time.Clock()
