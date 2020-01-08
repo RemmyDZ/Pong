@@ -13,10 +13,6 @@ import classes
 # Globals
 isGameFinished = False
 
-ballX, ballY = glob.SCREEN_WIDTH/2, glob.SCREEN_HEIGHT/2
-ballRadius = 8
-ballSpeed = 7
-ballDirection = [False, False, False, False]
 ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 dir.UP to 7 makes 8 possible numbers
 
 
