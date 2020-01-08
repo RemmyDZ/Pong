@@ -14,9 +14,6 @@ isGameFinished = False
 screenWidth = 1000
 screenHeight = 600
 
-computerX, computerY = screenWidth-50, screenHeight/2
-computerSpeed = 4
-
 ballX, ballY = screenWidth/2, screenHeight/2
 ballRadius = 8
 ballSpeed = 7
@@ -36,6 +33,14 @@ class Player:
         self.speed = speed
         self.move = [False, False] # When created the player should not move without any input first
 
+class Computer:
+    def __init__ (self, x, y, height, width, speed):
+        self.x = x
+        self.y = y
+        self.height = height
+        self.width = width
+        self.speed = speed
+
 
 # Initialize Pygame
 pygame.init()
@@ -47,7 +52,7 @@ screen = pygame.display.set_mode((screenWidth, screenHeight))
 
 # Create objects
 player = Player(30, screenHeight/2, 100, 20, 5)
-
+computer = Computer(screenWidth-50, screenHeight/2, 100, 20, 4)
 
 # Create clock
 clock = pygame.time.Clock()
@@ -140,7 +145,7 @@ while not isGameFinished:
     pygame.draw.rect(screen, col.WHITE, pygame.Rect(player.x, player.y, player.width, player.height))
 
     # Draw computer
-    pygame.draw.rect(screen, col.WHITE, pygame.Rect(computerX, computerY, padWidth, padHeight))
+    pygame.draw.rect(screen, col.WHITE, pygame.Rect(computer.x, computer.y, computer.width, computer.height))
 
     # Draw ball
     pygame.draw.circle(screen, col.WHITE, (int(ballX), int(ballY)), ballRadius)
