@@ -17,7 +17,7 @@ screenHeight = 600
 ballX, ballY = screenWidth/2, screenHeight/2
 ballRadius = 8
 ballSpeed = 7
-ballDirection = [False, False, False, False] # The ball has 8 directions, up, down, left, right and combinations of those that wouldn't cancel each other out
+ballDirection = [False, False, False, False]
 ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 dir.UP to 7 makes 8 possible numbers
 
 padHeight, padWidth = 100, 20
@@ -41,6 +41,13 @@ class Computer:
         self.width = width
         self.speed = speed
 
+class Ball:
+    def __init__(self, x, y, radius, speed):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.speed = speed
+        self.direction = [False, False, False, False] # The ball has 8 directions, up, down, left, right and combinations of those that wouldn't cancel each other out
 
 # Initialize Pygame
 pygame.init()
@@ -53,6 +60,7 @@ screen = pygame.display.set_mode((screenWidth, screenHeight))
 # Create objects
 player = Player(30, screenHeight/2, 100, 20, 5)
 computer = Computer(screenWidth-50, screenHeight/2, 100, 20, 4)
+ball = Ball(screenWidth/2, screenHeight/2, 8, 7)
 
 # Create clock
 clock = pygame.time.Clock()
@@ -82,55 +90,55 @@ while not isGameFinished:
 
     # Set ball direction based on the direction number
     if ballDirectionNumber == 0: # Up
-        ballDirection[dirs.UP] = True
-        ballDirection[dirs.DOWN] = False
-        ballDirection[dirs.LEFT] = False
-        ballDirection[dirs.RIGHT] = False
+        ball.direction[dirs.UP] = True
+        ball.direction[dirs.DOWN] = False
+        ball.direction[dirs.LEFT] = False
+        ball.direction[dirs.RIGHT] = False
     elif ballDirectionNumber == 1: # Down
-        ballDirection[dirs.DOWN] = True
-        ballDirection[dirs.UP] = False
-        ballDirection[dirs.LEFT] = False
-        ballDirection[dirs.RIGHT] = False
+        ball.direction[dirs.DOWN] = True
+        ball.direction[dirs.UP] = False
+        ball.direction[dirs.LEFT] = False
+        ball.direction[dirs.RIGHT] = False
     elif ballDirectionNumber == 2: # Left
-        ballDirection[dirs.LEFT] = True
-        ballDirection[dirs.RIGHT] = False
-        ballDirection[dirs.UP] = False
-        ballDirection[dirs.DOWN] = False
+        ball.direction[dirs.LEFT] = True
+        ball.direction[dirs.RIGHT] = False
+        ball.direction[dirs.UP] = False
+        ball.direction[dirs.DOWN] = False
     elif ballDirectionNumber == 3: # Right
-        ballDirection[dirs.RIGHT] = True
-        ballDirection[dirs.LEFT] = False
-        ballDirection[dirs.UP] = False
-        ballDirection[dirs.DOWN] = False
+        ball.direction[dirs.RIGHT] = True
+        ball.direction[dirs.LEFT] = False
+        ball.direction[dirs.UP] = False
+        ball.direction[dirs.DOWN] = False
     elif ballDirectionNumber == 4: # Up + left
-        ballDirection[dirs.UP] = True
-        ballDirection[dirs.LEFT] = True
-        ballDirection[dirs.DOWN] = False
-        ballDirection[dirs.RIGHT] = False
+        ball.direction[dirs.UP] = True
+        ball.direction[dirs.LEFT] = True
+        ball.direction[dirs.DOWN] = False
+        ball.direction[dirs.RIGHT] = False
     elif ballDirectionNumber == 5: # Up + right
-        ballDirection[dirs.UP] = True
-        ballDirection[dirs.RIGHT] = True
-        ballDirection[dirs.LEFT] = False
-        ballDirection[dirs.DOWN] = False
+        ball.direction[dirs.UP] = True
+        ball.direction[dirs.RIGHT] = True
+        ball.direction[dirs.LEFT] = False
+        ball.direction[dirs.DOWN] = False
     elif ballDirectionNumber == 6: # Down + left
-        ballDirection[dirs.DOWN] = True
-        ballDirection[dirs.LEFT] = True
-        ballDirection[dirs.UP] = False
-        ballDirection[dirs.RIGHT] = False
+        ball.direction[dirs.DOWN] = True
+        ball.direction[dirs.LEFT] = True
+        ball.direction[dirs.UP] = False
+        ball.direction[dirs.RIGHT] = False
     elif ballDirectionNumber == 7: # Down + right
-        ballDirection[dirs.DOWN] = True
-        ballDirection[dirs.RIGHT] = False
-        ballDirection[dirs.UP] = False
-        ballDirection[dirs.LEFT] = False
+        ball.direction[dirs.DOWN] = True
+        ball.direction[dirs.RIGHT] = False
+        ball.direction[dirs.UP] = False
+        ball.direction[dirs.LEFT] = False
 
     # Ball movement
-    if ballDirection[dirs.UP]:
-        ballY -= ballSpeed
-    if ballDirection[dirs.DOWN]:
-        ballY += ballSpeed
-    if ballDirection[dirs.LEFT]:
-        ballX -= ballSpeed
-    if ballDirection[dirs.RIGHT]:
-        ballX += ballSpeed
+    if ball.direction[dirs.UP]:
+        ball.y -= ball.speed
+    if ball.direction[dirs.DOWN]:
+        ball.y += ball.speed
+    if ball.direction[dirs.LEFT]:
+        ball.x -= ball.speed
+    if ball.direction[dirs.RIGHT]:
+        ball.x += ball.speed
 
     # Player boundary collision
     if player.y < 10:
@@ -148,7 +156,7 @@ while not isGameFinished:
     pygame.draw.rect(screen, col.WHITE, pygame.Rect(computer.x, computer.y, computer.width, computer.height))
 
     # Draw ball
-    pygame.draw.circle(screen, col.WHITE, (int(ballX), int(ballY)), ballRadius)
+    pygame.draw.circle(screen, col.WHITE, (int(ball.x), int(ball.y)), ball.radius)
 
     pygame.display.flip()
     clock.tick(FPS)
