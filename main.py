@@ -4,23 +4,19 @@ import random
 
 
 # Import local libraries
+import globals as glob
 import colors as col
 import directions as dirs # "dir" is already something in Python
 
 
 # Globals
-FPS = 75 # Change this to your display refresh rate for best result
 isGameFinished = False
-screenWidth = 1000
-screenHeight = 600
 
-ballX, ballY = screenWidth/2, screenHeight/2
+ballX, ballY = glob.SCREEN_WIDTH/2, glob.SCREEN_HEIGHT/2
 ballRadius = 8
 ballSpeed = 7
 ballDirection = [False, False, False, False]
 ballDirectionNumber = random.randint(0, 7) # Eight possible directions, 0 dir.UP to 7 makes 8 possible numbers
-
-padHeight, padWidth = 100, 20
 
 
 # Classes
@@ -54,13 +50,13 @@ pygame.init()
 
 
 # Create display
-screen = pygame.display.set_mode((screenWidth, screenHeight))
+screen = pygame.display.set_mode((glob.SCREEN_WIDTH, glob.SCREEN_HEIGHT))
 
 
 # Create objects
-player = Player(30, screenHeight/2, 100, 20, 5)
-computer = Computer(screenWidth-50, screenHeight/2, 100, 20, 4)
-ball = Ball(screenWidth/2, screenHeight/2, 8, 7)
+player = Player(30, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 5)
+computer = Computer(glob.SCREEN_WIDTH-50, glob.SCREEN_HEIGHT/2, glob.PAD_HEIGHT, glob.PAD_WIDTH, 4)
+ball = Ball(glob.SCREEN_WIDTH/2, glob.SCREEN_HEIGHT/2, 8, 7)
 
 # Create clock
 clock = pygame.time.Clock()
@@ -143,8 +139,8 @@ while not isGameFinished:
     # Player boundary collision
     if player.y < 10:
         player.y = 10
-    if player.y > (screenHeight - player.height - 10):
-        player.y = (screenHeight - player.height - 10)
+    if player.y > (glob.SCREEN_HEIGHT - player.height - 10):
+        player.y = (glob.SCREEN_HEIGHT - player.height - 10)
 
 
     screen.fill(col.BLACK)
@@ -159,7 +155,7 @@ while not isGameFinished:
     pygame.draw.circle(screen, col.WHITE, (int(ball.x), int(ball.y)), ball.radius)
 
     pygame.display.flip()
-    clock.tick(FPS)
+    clock.tick(glob.FPS)
 
 
 # Close Pygame
