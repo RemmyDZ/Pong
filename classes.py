@@ -76,3 +76,6 @@ class Ball:
             self.x -= self.speed
         if self.direction[dirs.RIGHT]:
             self.x += self.speed
+    def update(self):
+        self.setDirection()
+        self.move()

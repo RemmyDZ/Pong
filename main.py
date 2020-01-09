@@ -55,11 +55,8 @@ while not isGameFinished:
     if player.move[dirs.DOWN]:
         player.y += player.speed
 
-    # Set ball direction based on the direction number
-    ball.setDirection()
-
-    # Ball movement
-    ball.move()
+    # Set ball direction and move it
+    ball.update()
 
     # Player boundary collision
     if player.y < 10:
