@@ -56,56 +56,10 @@ while not isGameFinished:
         player.y += player.speed
 
     # Set ball direction based on the direction number
-    if ballDirectionNumber == 0: # Up
-        ball.direction[dirs.UP] = True
-        ball.direction[dirs.DOWN] = False
-        ball.direction[dirs.LEFT] = False
-        ball.direction[dirs.RIGHT] = False
-    elif ballDirectionNumber == 1: # Down
-        ball.direction[dirs.DOWN] = True
-        ball.direction[dirs.UP] = False
-        ball.direction[dirs.LEFT] = False
-        ball.direction[dirs.RIGHT] = False
-    elif ballDirectionNumber == 2: # Left
-        ball.direction[dirs.LEFT] = True
-        ball.direction[dirs.RIGHT] = False
-        ball.direction[dirs.UP] = False
-        ball.direction[dirs.DOWN] = False
-    elif ballDirectionNumber == 3: # Right
-        ball.direction[dirs.RIGHT] = True
-        ball.direction[dirs.LEFT] = False
-        ball.direction[dirs.UP] = False
-        ball.direction[dirs.DOWN] = False
-    elif ballDirectionNumber == 4: # Up + left
-        ball.direction[dirs.UP] = True
-        ball.direction[dirs.LEFT] = True
-        ball.direction[dirs.DOWN] = False
-        ball.direction[dirs.RIGHT] = False
-    elif ballDirectionNumber == 5: # Up + right
-        ball.direction[dirs.UP] = True
-        ball.direction[dirs.RIGHT] = True
-        ball.direction[dirs.LEFT] = False
-        ball.direction[dirs.DOWN] = False
-    elif ballDirectionNumber == 6: # Down + left
-        ball.direction[dirs.DOWN] = True
-        ball.direction[dirs.LEFT] = True
-        ball.direction[dirs.UP] = False
-        ball.direction[dirs.RIGHT] = False
-    elif ballDirectionNumber == 7: # Down + right
-        ball.direction[dirs.DOWN] = True
-        ball.direction[dirs.RIGHT] = False
-        ball.direction[dirs.UP] = False
-        ball.direction[dirs.LEFT] = False
+    ball.setDirection()
 
     # Ball movement
-    if ball.direction[dirs.UP]:
-        ball.y -= ball.speed
-    if ball.direction[dirs.DOWN]:
-        ball.y += ball.speed
-    if ball.direction[dirs.LEFT]:
-        ball.x -= ball.speed
-    if ball.direction[dirs.RIGHT]:
-        ball.x += ball.speed
+    ball.move()
 
     # Player boundary collision
     if player.y < 10:
