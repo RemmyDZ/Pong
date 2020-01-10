@@ -1,5 +1,7 @@
+import pygame.surface
 import random
 import directions as dirs
+import colors as col
 
 class Player:
     def __init__(self, x, y, height, width, speed):
@@ -79,3 +81,5 @@ class Ball:
     def update(self):
         self.setDirection()
         self.move()
+    def draw(self, screen):
+        pygame.draw.circle(screen, col.WHITE, (int(self.x), int(self.y)), self.radius)

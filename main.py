@@ -74,7 +74,7 @@ while not isGameFinished:
     pygame.draw.rect(screen, col.WHITE, pygame.Rect(computer.x, computer.y, computer.width, computer.height))
 
     # Draw ball
-    pygame.draw.circle(screen, col.WHITE, (int(ball.x), int(ball.y)), ball.radius)
+    ball.draw(screen)
 
     pygame.display.flip()
     clock.tick(glob.FPS)
