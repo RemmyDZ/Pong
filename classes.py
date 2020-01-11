@@ -2,6 +2,7 @@ import pygame.surface
 import random
 import directions as dirs
 import colors as col
+import globals as glob
 
 class Player:
     def __init__(self, x, y, height, width, speed):
@@ -10,7 +11,22 @@ class Player:
         self.height = height
         self.width = width
         self.speed = speed
-        self.move = [False, False] # When created the player should not move without any input first
+        self.isMoving = [False, False] # When created the player should not move without any input first
+    def checkCollision(self):
+        if self.y < 10:
+            self.y = 10
+        if self.y > (glob.SCREEN_HEIGHT - self.height - 10):
+            self.y = (glob.SCREEN_HEIGHT - self.height - 10)
+    def move(self):
+        if self.isMoving[dirs.UP]:
+            self.y -= self.speed
+        if self.isMoving[dirs.DOWN]:
+            self.y += self.speed
+    def update(self):
+        self.checkCollision()
+        self.move()
+    def draw(self, screen):
+        pygame.draw.rect(screen, col.WHITE, pygame.Rect(self.x, self.y, self.width, self.height))
 
 class Computer:
     def __init__ (self, x, y, height, width, speed):

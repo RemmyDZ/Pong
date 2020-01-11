@@ -40,35 +40,28 @@ while not isGameFinished:
             isGameFinished = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                player.move[dirs.UP] = True
+                player.isMoving[dirs.UP] = True
             if event.key == pygame.K_s:
-                player.move[dirs.DOWN] = True
+                player.isMoving[dirs.DOWN] = True
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                player.move[dirs.UP] = False
+                player.isMoving[dirs.UP] = False
             if event.key == pygame.K_s:
-                player.move[dirs.DOWN] = False
+                player.isMoving[dirs.DOWN] = False
 
     # Player movement
-    if player.move[dirs.UP]:
-        player.y -= player.speed
-    if player.move[dirs.DOWN]:
-        player.y += player.speed
+
 
     # Set ball direction and move it
     ball.update()
 
-    # Player boundary collision
-    if player.y < 10:
-        player.y = 10
-    if player.y > (glob.SCREEN_HEIGHT - player.height - 10):
-        player.y = (glob.SCREEN_HEIGHT - player.height - 10)
-
+    # Check player boundaries and move player
+    player.update()
 
     screen.fill(col.BLACK)
 
     # Draw player
-    pygame.draw.rect(screen, col.WHITE, pygame.Rect(player.x, player.y, player.width, player.height))
+    player.draw(screen)
 
     # Draw computer
     pygame.draw.rect(screen, col.WHITE, pygame.Rect(computer.x, computer.y, computer.width, computer.height))
