@@ -52,21 +52,15 @@ while not isGameFinished:
     # Player movement
 
 
-    # Set ball direction and move it
+    # Update objects
     ball.update()
-
-    # Check player boundaries and move player
     player.update()
 
     screen.fill(col.BLACK)
 
-    # Draw player
+    # Draw objects
     player.draw(screen)
-
-    # Draw computer
-    pygame.draw.rect(screen, col.WHITE, pygame.Rect(computer.x, computer.y, computer.width, computer.height))
-
-    # Draw ball
+    computer.draw(screen)
     ball.draw(screen)
 
     pygame.display.flip()

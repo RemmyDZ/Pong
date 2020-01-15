@@ -37,6 +37,8 @@ class Computer:
         self.height = height
         self.width = width
         self.speed = speed
+    def draw(self, screen):
+        pygame.draw.rect(screen, col.WHITE, pygame.Rect(self.x, self.y, self.width, self.height))
 
 class Ball:
     def __init__(self, x, y, radius, speed):
