@@ -13,10 +13,12 @@ class Player:
         self.speed = speed
         self.isMoving = [False, False] # When created the player should not move without any input first
     def checkCollision(self):
-        if self.y < 10:
+        if self.y <= 10:
             self.y = 10
-        if self.y > (glob.SCREEN_HEIGHT - self.height - 10):
+        if self.y >= (glob.SCREEN_HEIGHT - self.height - 10):
             self.y = (glob.SCREEN_HEIGHT - self.height - 10)
+    def setMovement(self, direction, move):
+        self.isMoving[direction] = move
     def move(self):
         if self.isMoving[dirs.UP]:
             self.y -= self.speed

@@ -40,14 +40,14 @@ while not isGameFinished:
             isGameFinished = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                player.isMoving[dirs.UP] = True
+                player.setMovement(dirs.UP, True)
             if event.key == pygame.K_s:
-                player.isMoving[dirs.DOWN] = True
+                player.setMovement(dirs.DOWN, True)
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                player.isMoving[dirs.UP] = False
+                player.setMovement(dirs.UP, False)
             if event.key == pygame.K_s:
-                player.isMoving[dirs.DOWN] = False
+                player.setMovement(dirs.DOWN, False)
 
     # Player movement
 
