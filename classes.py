@@ -46,57 +46,57 @@ class Ball:
         self.y = y
         self.radius = radius
         self.speed = speed
-        self.direction = [False, False, False, False] # The ball has 8 directions, up, down, left, right and combinations of those that wouldn't cancel each other out
-        self.directionNumber = random.randint(0, 7)
-    def setDirection(self):
-        if self.directionNumber == 0:  # Up
-            self.direction[dirs.UP] = True
-            self.direction[dirs.DOWN] = False
-            self.direction[dirs.LEFT] = False
-            self.direction[dirs.RIGHT] = False
-        elif self.directionNumber == 1:  # Down
-            self.direction[dirs.DOWN] = True
-            self.direction[dirs.UP] = False
-            self.direction[dirs.LEFT] = False
-            self.direction[dirs.RIGHT] = False
-        elif self.directionNumber == 2:  # Left
-            self.direction[dirs.LEFT] = True
-            self.direction[dirs.RIGHT] = False
-            self.direction[dirs.UP] = False
-            self.direction[dirs.DOWN] = False
-        elif self.directionNumber == 3:  # Right
-            self.direction[dirs.RIGHT] = True
-            self.direction[dirs.LEFT] = False
-            self.direction[dirs.UP] = False
-            self.direction[dirs.DOWN] = False
-        elif self.directionNumber == 4:  # Up + left
-            self.direction[dirs.UP] = True
-            self.direction[dirs.LEFT] = True
-            self.direction[dirs.DOWN] = False
-            self.direction[dirs.RIGHT] = False
-        elif self.directionNumber == 5:  # Up + right
-            self.direction[dirs.UP] = True
-            self.direction[dirs.RIGHT] = True
-            self.direction[dirs.LEFT] = False
-            self.direction[dirs.DOWN] = False
-        elif self.directionNumber == 6:  # Down + left
-            self.direction[dirs.DOWN] = True
-            self.direction[dirs.LEFT] = True
-            self.direction[dirs.UP] = False
-            self.direction[dirs.RIGHT] = False
-        elif self.directionNumber == 7:  # Down + right
-            self.direction[dirs.DOWN] = True
-            self.direction[dirs.RIGHT] = False
-            self.direction[dirs.UP] = False
-            self.direction[dirs.LEFT] = False
+        self.directions = [False, False, False, False] # The ball has 8 directions, up, down, left, right and combinations of those that wouldn't cancel each other out
+        self.direction = dirs.RIGHT # Always start towards the computer
+    def setDirection(self, ):
+        if self.direction == 0:  # Up
+            self.directions[dirs.UP] = True
+            self.directions[dirs.DOWN] = False
+            self.directions[dirs.LEFT] = False
+            self.directions[dirs.RIGHT] = False
+        elif self.direction == 1:  # Down
+            self.directions[dirs.DOWN] = True
+            self.directions[dirs.UP] = False
+            self.directions[dirs.LEFT] = False
+            self.directions[dirs.RIGHT] = False
+        elif self.direction == 2:  # Left
+            self.directions[dirs.LEFT] = True
+            self.directions[dirs.RIGHT] = False
+            self.directions[dirs.UP] = False
+            self.directions[dirs.DOWN] = False
+        elif self.direction == 3:  # Right
+            self.directions[dirs.RIGHT] = True
+            self.directions[dirs.LEFT] = False
+            self.directions[dirs.UP] = False
+            self.directions[dirs.DOWN] = False
+        elif self.direction == 4:  # Up + left
+            self.directions[dirs.UP] = True
+            self.directions[dirs.LEFT] = True
+            self.directions[dirs.DOWN] = False
+            self.directions[dirs.RIGHT] = False
+        elif self.direction == 5:  # Up + right
+            self.directions[dirs.UP] = True
+            self.directions[dirs.RIGHT] = True
+            self.directions[dirs.LEFT] = False
+            self.directions[dirs.DOWN] = False
+        elif self.direction == 6:  # Down + left
+            self.directions[dirs.DOWN] = True
+            self.directions[dirs.LEFT] = True
+            self.directions[dirs.UP] = False
+            self.directions[dirs.RIGHT] = False
+        elif self.direction == 7:  # Down + right
+            self.directions[dirs.DOWN] = True
+            self.directions[dirs.RIGHT] = False
+            self.directions[dirs.UP] = False
+            self.directions[dirs.LEFT] = False
     def move(self):
-        if self.direction[dirs.UP]:
+        if self.directions[dirs.UP]:
             self.y -= self.speed
-        if self.direction[dirs.DOWN]:
+        if self.directions[dirs.DOWN]:
             self.y += self.speed
-        if self.direction[dirs.LEFT]:
+        if self.directions[dirs.LEFT]:
             self.x -= self.speed
-        if self.direction[dirs.RIGHT]:
+        if self.directions[dirs.RIGHT]:
             self.x += self.speed
     def update(self):
         self.setDirection()
