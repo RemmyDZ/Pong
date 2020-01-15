@@ -31,6 +31,8 @@ def main(isGameFinished):
             if event.type == pygame.QUIT:
                 isGameFinished = True
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    isGameFinished = True
                 if event.key == pygame.K_w:
                     player.setMovement(dirs.UP, True)
                 if event.key == pygame.K_s:
